@@ -7,8 +7,28 @@
 </head>
 <body>
     <h1>Home</h1>
-    <script src="promise-observal.js">
+
+<button id="clickMe">Click Me</button>
+<p id="counterDisplay">You've clicked 0 times.</p>
+    <script src="clouser.js">
 
     </script>
 </body>
 </html>
+<script>
+    function createClickCounter() {
+        let count = 0; // This variable is part of the closure
+
+        return function() {
+            count++; // Increment the count every time the returned function is called
+            return count;
+        };
+    }
+
+    const clickCounter = createClickCounter(); // Initialize the counter
+
+    document.getElementById('clickMe').addEventListener('click', function() {
+        const newCount = clickCounter(); // Update and get the new count
+        document.getElementById('counterDisplay').innerText = `You've clicked ${newCount} times.`;
+    });
+</script>

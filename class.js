@@ -6,6 +6,7 @@ class Person {
   getName() {
       return this.name;
   }
+    
   setName(newName) {
       newName = newName.trim();
       if (newName === '') {
@@ -15,9 +16,19 @@ class Person {
   }
 }
 
-let person = new Person('vinay singh oe');
-console.log(person); // Jane Doe
+const outerFunction = function() {
+  return 'vinay from outer function';
+}
 
-person.setName('Jane Smith');
-console.log(person.getName())
+console.log(Person.__proto__ == Person.prototype);
+
+Person.prototype.outerFunction = outerFunction();
+Person.prototype.defaultName = 'Hello World';
+
+
+let person = new Person('vinay singh');
+console.log(person.outerFunction, 'calling'); //vinay
+
+// person.setName('Jane Smith');
+// console.log(person.getName())
 // console.log(person); // Jane Smith
